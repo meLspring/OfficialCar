@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.yysh.officialcar.QRCodeActivity">
+<android.support.v7.widget.Toolbar
+    android:id="@+id/QRToobar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#eee"
+    app:contentInsetStart="0dp"
+    >
+    <ImageView
+        android:id="@+id/QR_back"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@mipmap/ic_launcher"
+        android:clickable="true"
+        android:scaleType="fitXY"
+        android:onClick="QR_back"/>
+
+    <TextView
+        android:id="@+id/toobarTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="扫描车辆二维码"
+        android:textSize="20sp"
+        />
+</android.support.v7.widget.Toolbar>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        >
+        <me.dm7.barcodescanner.zbar.ZBarScannerView
+            android:id="@+id/zBarScannerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+</LinearLayout>

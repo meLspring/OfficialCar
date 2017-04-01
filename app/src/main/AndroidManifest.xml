@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.yysh.officialcar">
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:name=".MyApp"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".MainActivity"
+            android:launchMode="singleTask" />
+        <activity android:name=".LoginActivity"></activity>
+        <activity
+            android:name=".QRCodeActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize" />
+        <activity android:name=".SystemIntroduceActivity" />
+        <activity android:name=".NewsCenterActivity" />
+        <activity
+            android:name=".InforPlatformActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize" />
+        <activity android:name=".InforPlatformDetailActivity" />
+        <activity android:name=".AddMileageActivity" />
+        <activity android:name=".ZiXunActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

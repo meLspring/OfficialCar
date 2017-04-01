@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.yysh.officialcar.MainActivity">
+    <android.support.v7.widget.Toolbar
+        app:contentInsetStart="0dp"
+        android:id="@+id/mainToobar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#eee"
+        >
+        <ImageView
+            android:id="@+id/main_QR"
+            android:layout_width="45dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="left"
+            android:onClick="main_QRClick"
+            android:clickable="true"
+            android:scaleType="fitXY"
+            android:background="@mipmap/ic_launcher"
+            />
+        <ImageView
+            android:id="@+id/check"
+            android:layout_width="45dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:onClick="checkClick"
+            android:clickable="true"
+            android:scaleType="fitXY"
+            android:background="@mipmap/ic_launcher"
+            />
+        <TextView
+            android:id="@+id/main_toobarTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+             android:layout_gravity="center"
+            android:textSize="20sp"/>
+    </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="9" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:background="#eee">
+
+            <RadioGroup
+                android:id="@+id/main_rg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="5">
+
+                <RadioButton
+                    android:id="@+id/carCondition"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:button="@null"
+                    android:drawablePadding="-5dp"
+                    android:drawableTop="@mipmap/ic_launcher"
+                    android:gravity="center"
+                    android:text="车况"
+                    android:textSize="10sp" />
+
+                <RadioButton
+                    android:id="@+id/record"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:button="@null"
+                    android:drawablePadding="-5dp"
+                    android:drawableTop="@mipmap/ic_launcher"
+                    android:gravity="center"
+                    android:text="记录"
+                    android:textSize="10sp" />
+
+                <RadioButton
+                    android:id="@+id/rb_add"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:button="@null"
+                    android:drawableTop="@mipmap/ic_launcher" />
+
+                <RadioButton
+                    android:id="@+id/phone"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:button="@null"
+                    android:drawableTop="@mipmap/ic_launcher"
+                    android:drawablePadding="-5dp"
+                    android:gravity="center"
+                    android:text="电话"
+                    android:textSize="10sp" />
+
+                <RadioButton
+                    android:id="@+id/information"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:button="@null"
+                    android:drawableTop="@mipmap/ic_launcher"
+                    android:drawablePadding="-5dp"
+                    android:gravity="center"
+                    android:text="信息"
+                    android:textSize="10sp" />
+            </RadioGroup>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

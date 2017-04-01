@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        >
+        <TextView
+            android:id="@+id/orderNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1."
+            android:textSize="20sp"/>
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="中燕汽修"
+            android:textSize="20sp"
+            android:layout_toRightOf="@id/orderNumber"/>
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2007.10.31至2007.10.31"
+            android:textSize="20sp"
+            android:layout_below="@id/name"
+            android:layout_alignLeft="@id/name"/>
+        <TextView
+            android:id="@+id/mileage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="里程表底119318"
+            android:textSize="20sp"
+            android:layout_below="@id/time"
+            android:layout_alignLeft="@id/time"/>
+        <TextView
+            android:id="@+id/changeMileageTable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="更换里程表(表底归零)"
+            android:textSize="20sp"
+            android:layout_below="@id/mileage"
+            android:layout_alignLeft="@id/mileage"/>
+        <TextView
+            android:id="@+id/settlement"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="结算金额(元)6666"
+            android:textSize="20sp"
+            android:layout_below="@id/changeMileageTable"
+            android:layout_alignLeft="@id/changeMileageTable"/>
+    </RelativeLayout>
+</LinearLayout>
