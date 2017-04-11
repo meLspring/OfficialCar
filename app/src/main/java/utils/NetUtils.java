@@ -1,9 +1,12 @@
 package utils;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.support.v7.app.AlertDialog;
 import android.telephony.TelephonyManager;
 
 import java.util.List;
@@ -98,5 +101,40 @@ public class NetUtils {
         }
         return false;
     }
+    /*
+        * 打开网络设置界面请求
+        */
+    public static AlertDialog dialog_networkSettings;
+    public static void openNetworkSettings(final Context content) {
+        if (dialog_networkSettings == null) {
+            dialog_networkSettings = new AlertDialog.Builder(content)
+                    .setTitle("开启网络服务")
+                    .setMessage("本软件需要使用网络资源，是否开启网络？")
+                    .setPositiveButton("确定", new DialogInterface.OnClickListener() {
 
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // Go to the activity of settings of wireless
+                            if (android.os.Build.VERSION.SDK_INT > 13) {
+                                content.startActivity(new Intent(
+                                        android.provider.Settings.ACTION_SETTINGS));
+                            } else {
+                                content.startActivity(new Intent(
+                                        android.provider.Settings.ACTION_WIRELESS_SETTINGS));
+                            }
+                            dialog.cancel();
+                        }
+                    })
+                    .setNegativeButton("否", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    }).show();
+        } else {
+            if (!dialog_networkSettings.isShowing()) {
+                dialog_networkSettings.show();
+            }
+        }
+    }
 }
