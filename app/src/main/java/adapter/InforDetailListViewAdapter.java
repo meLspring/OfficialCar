@@ -18,9 +18,11 @@ import android.widget.TextView;
 
 import com.example.yysh.officialcar.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import bean.InforDetailBean;
+import widget.MyGridView;
 
 /**
  * Created by Lspring on 2017/3/23.
@@ -30,14 +32,18 @@ public class InforDetailListViewAdapter extends RecyclerView.Adapter<RecyclerVie
     private List<InforDetailBean> beanList;
     private Context context;
     private LayoutInflater inflater;
+    private List<Bitmap> bitmapList;    //添加图片到gridview的集合
+    private AddImgVideoAdapter addImgVideoAdapter;
     public InforDetailListViewAdapter(List<InforDetailBean> beanList,Context context){
         this.beanList=beanList;
         this.context=context;
         inflater=LayoutInflater.from(context);
+        bitmapList=new ArrayList<>();
+        addImgVideoAdapter=new AddImgVideoAdapter(bitmapList,context);
     }
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view=inflater.inflate(R.layout.detail_listview_item,parent,false);
+        View view=inflater.inflate(R.layout.infor_platform_detail_item,parent,false);
         DetailViewHolder holder=new DetailViewHolder(view);
         return holder;
     }
@@ -46,22 +52,29 @@ public class InforDetailListViewAdapter extends RecyclerView.Adapter<RecyclerVie
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         DetailViewHolder viewHolder= (DetailViewHolder) holder;
         InforDetailBean bean=beanList.get(holder.getAdapterPosition());
-        viewHolder.userName.setText(bean.getDetail_userName());
-        viewHolder.content.setText(bean.getShowContent());
-        boolean tag=bean.isDetail_linear();
-        if(tag){        //说明有图片视频或者音频
-            viewHolder.BigLinear.setVisibility(View.VISIBLE);
-            viewHolder.show_linear.setVerticalGravity(LinearLayout.VERTICAL);
-            for (int i=0;i<3;i++) {
-                ImageView ig = new ImageView(context);
-                ig.setLayoutParams(new ViewGroup.LayoutParams(120, 120));
-                Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), R.mipmap.ic_launcher);
-                ig.setImageBitmap(bitmap);
-                viewHolder.show_linear.addView(ig);
-            }
+        if(bean.isTitle()){         //说明是有title标题的
+            viewHolder.titleLinear.setVisibility(View.VISIBLE);
+            viewHolder.title.setText(bean.getTitle());
         }else{
-            viewHolder.BigLinear.setVisibility(View.GONE);
+            viewHolder.titleLinear.setVisibility(View.GONE);
         }
+        if(bean.isIcon()){      //说明linear里有图片
+            bitmapList.clear();
+            viewHolder.iconLinaer.setVisibility(View.VISIBLE);
+            viewHolder.detail_gridview.setVisibility(View.VISIBLE);
+            for (int i=0;i<5;i++) {
+                Bitmap bitmap=BitmapFactory.decodeResource(context.getResources(),R.mipmap.ic_launcher_round);
+                bitmapList.add(bitmap);
+            }
+            viewHolder.detail_gridview.setAdapter(addImgVideoAdapter);
+            addImgVideoAdapter.notifyDataSetChanged();
+        }else{
+            viewHolder.iconLinaer.setVisibility(View.GONE);
+           // addImgVideoAdapter.notifyDataSetChanged();
+        }
+        viewHolder.user.setText(bean.getUser());
+        viewHolder.time.setText(bean.getTime());
+        viewHolder.content.setText(bean.getContent());
     }
 
     @Override
@@ -70,16 +83,22 @@ public class InforDetailListViewAdapter extends RecyclerView.Adapter<RecyclerVie
     }
 
     static class DetailViewHolder extends RecyclerView.ViewHolder{
-        TextView userName;
+        TextView title;
+        TextView user;
         TextView content;
-        LinearLayout BigLinear;
-        LinearLayout show_linear;
+        TextView time;
+        LinearLayout titleLinear;
+        LinearLayout iconLinaer;
+        MyGridView detail_gridview;
         public DetailViewHolder(View itemView) {
             super(itemView);
-            userName= (TextView) itemView.findViewById(R.id.detail_userName);
-            content= (TextView) itemView.findViewById(R.id.showContent);
-            BigLinear= (LinearLayout) itemView.findViewById(R.id.detail_BigLinear);
-            show_linear= (LinearLayout) itemView.findViewById(R.id.show_linear);
+            title= (TextView) itemView.findViewById(R.id.infor_platform_detail_item_title);
+            content= (TextView) itemView.findViewById(R.id.infor_platform_detail_item_content);
+            user= (TextView) itemView.findViewById(R.id.infor_platform_detail_item_user);
+            time= (TextView) itemView.findViewById(R.id.infor_platform_detail_item_time);
+            titleLinear= (LinearLayout) itemView.findViewById(R.id.infor_platform_detail_item_isTitle);
+            iconLinaer= (LinearLayout) itemView.findViewById(R.id.infor_platform_detail_item_linear);
+            detail_gridview=((MyGridView) itemView.findViewById(R.id.infor_platform_detail_item_gridview));
         }
     }
 }

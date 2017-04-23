@@ -1,4 +1,4 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,5 +9,26 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:divider="@null"/>
-
-</FrameLayout>
+    <RelativeLayout
+        android:id="@+id/record_rela"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone">
+        <TextView
+            android:id="@+id/record_no_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="您还没有登录哦,"
+            android:textSize="15sp"
+            />
+        <TextView
+            android:id="@+id/record_toLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="点击登录"
+            android:textColor="@android:color/holo_blue_bright"
+            android:layout_toRightOf="@id/record_no_login"
+            android:textSize="15sp" />
+    </RelativeLayout>
+</RelativeLayout>

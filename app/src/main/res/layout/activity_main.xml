@@ -28,7 +28,7 @@
             android:layout_width="45dp"
             android:layout_height="match_parent"
             android:layout_gravity="right"
-            android:onClick="checkClick"
+            android:onClick="NewsClick"
             android:clickable="true"
             android:scaleType="fitXY"
             android:background="@mipmap/ic_launcher"
@@ -67,7 +67,7 @@
                 android:weightSum="5">
 
                 <RadioButton
-                    android:id="@+id/carCondition"
+                    android:id="@+id/main_carCondition"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -79,7 +79,7 @@
                     android:textSize="10sp" />
 
                 <RadioButton
-                    android:id="@+id/record"
+                    android:id="@+id/main_record"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -91,7 +91,7 @@
                     android:textSize="10sp" />
 
                 <RadioButton
-                    android:id="@+id/rb_add"
+                    android:id="@+id/main_add"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
@@ -100,7 +100,7 @@
                     android:drawableTop="@mipmap/ic_launcher" />
 
                 <RadioButton
-                    android:id="@+id/phone"
+                    android:id="@+id/main_zixun"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -108,11 +108,11 @@
                     android:drawableTop="@mipmap/ic_launcher"
                     android:drawablePadding="-5dp"
                     android:gravity="center"
-                    android:text="电话"
+                    android:text="资讯"
                     android:textSize="10sp" />
 
                 <RadioButton
-                    android:id="@+id/information"
+                    android:id="@+id/main_my"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -120,7 +120,7 @@
                     android:drawableTop="@mipmap/ic_launcher"
                     android:drawablePadding="-5dp"
                     android:gravity="center"
-                    android:text="信息"
+                    android:text="我的"
                     android:textSize="10sp" />
             </RadioGroup>
 

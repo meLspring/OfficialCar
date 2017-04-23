@@ -9,18 +9,24 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 
 public class SqOpenHelper extends SQLiteOpenHelper{
-
-    public SqOpenHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, name, factory, version);
+    private static final String DB_NAME="user.db";
+    private static final int DB_VERSION=1;
+    public SqOpenHelper(Context context) {
+        super(context, DB_NAME, null, DB_VERSION);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        db.execSQL("create table if not exists myUser(_id integer primary key autoincrement," +
+                "userId,token)");
 
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        if(newVersion>oldVersion){
+            db.execSQL("drop table if exists myUser");
+            onCreate(db);
+        }
     }
 }

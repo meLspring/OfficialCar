@@ -6,32 +6,60 @@ package bean;
 
 //信息平台详情
 public class InforDetailBean {
-    private String detail_userName;
-    private String showContent;
-    private boolean detail_linear;
+   private String title;        //标题
+    private String user;        //用户
+    private String time;        //时间
+    private String content;     //内容
+    private boolean isIcon;     //是否有图片
+    private boolean isTitle;    //判断是否有title
 
-    public String getDetail_userName() {
-        return detail_userName;
+    public boolean isTitle() {
+        return isTitle;
     }
 
-    public String getShowContent() {
-        return showContent;
+    public void setTitle(boolean title) {
+
+        isTitle = title;
     }
 
-    public boolean isDetail_linear() {
-        return detail_linear;
+    public String getTitle() {
+        return title;
     }
 
-    public void setDetail_userName(String detail_userName) {
-
-        this.detail_userName = detail_userName;
+    public String getUser() {
+        return user;
     }
 
-    public void setShowContent(String showContent) {
-        this.showContent = showContent;
+    public String getTime() {
+        return time;
     }
 
-    public void setDetail_linear(boolean detail_linear) {
-        this.detail_linear = detail_linear;
+    public String getContent() {
+        return content;
+    }
+
+    public boolean isIcon() {
+        return isIcon;
+    }
+
+    public void setTitle(String title) {
+
+        this.title = title;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public void setIcon(boolean icon) {
+        isIcon = icon;
     }
 }

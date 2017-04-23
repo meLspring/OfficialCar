@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.yysh.officialcar.DynamicFormActivity">
+<android.support.v7.widget.Toolbar
+    android:id="@+id/dynamic_form_toobar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#eee">
+    <ImageView
+        android:id="@+id/dynamic_form_back"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="left"
+        android:onClick="form_back"
+        android:clickable="true"
+        android:scaleType="fitXY"
+        android:background="@mipmap/left"
+        />
+    <ImageView
+        android:id="@+id/dynamic_form_add"
+        android:layout_width="45dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="right"
+        android:onClick="form_save"
+        android:clickable="true"
+        android:scaleType="fitXY"
+        android:background="@mipmap/ic_launcher"
+        />
+    <TextView
+        android:id="@+id/dynamic_form_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="动态表单"
+        android:textSize="20sp"/>
+</android.support.v7.widget.Toolbar>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<widget.VpSwipeRefreshLayout
+    android:id="@+id/add_biaodi_swipe"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<android.support.v7.widget.RecyclerView
+    android:id="@+id/add_biaodi_recycler"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"/>
+</widget.VpSwipeRefreshLayout>
+    <RelativeLayout
+        android:id="@+id/dynamic_toLogin_rela"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone">
+        <TextView
+            android:id="@+id/dynamic_no_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="您还没有登录哦,"
+            android:textSize="15sp"
+            />
+        <TextView
+            android:id="@+id/dynamic_toLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="点击登录"
+            android:textColor="@android:color/holo_blue_bright"
+            android:layout_toRightOf="@id/dynamic_no_login"
+            android:textSize="15sp" />
+    </RelativeLayout>
+    </RelativeLayout>
+</LinearLayout>

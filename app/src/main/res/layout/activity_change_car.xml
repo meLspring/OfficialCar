@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.yysh.officialcar.ChangeCarActivity">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/system_toobar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#eee">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/left"
+            android:scaleType="fitXY"
+            android:onClick="changeCar_back"
+            android:clickable="true"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="更换车辆"
+            android:layout_gravity="center"
+            android:textSize="20sp"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/ic_launcher_round"
+            android:scaleType="fitXY"
+            android:onClick="chageCar_save"
+            android:clickable="true"
+            android:layout_gravity="right"/>
+    </android.support.v7.widget.Toolbar>
+<android.support.v4.widget.SwipeRefreshLayout
+    android:id="@+id/chage_car_swipe"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <widget.MyListView
+        android:id="@+id/chage_car_listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:dividerHeight="10dp"
+        />
+</android.support.v4.widget.SwipeRefreshLayout>
+</LinearLayout>

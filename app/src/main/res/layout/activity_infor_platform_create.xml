@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="10"
+    tools:context="com.example.yysh.officialcar.InforPlatformCreateActivity">
+<android.support.v7.widget.Toolbar
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#eee">
+    <ImageView
+        android:id="@+id/infor_platform_create_back"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:onClick="create_backOne"
+        android:clickable="true"
+        android:background="@mipmap/left"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="23sp"
+        android:text="信息创建"
+        android:layout_gravity="center"/>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:onClick="create_backTwo"
+        android:clickable="true"
+        android:layout_gravity="right"
+        android:background="@mipmap/ic_launcher_round"/>
+</android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+    <EditText
+        android:id="@+id/infor_detail_create_title"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:hint="单行输入"
+        android:layout_marginLeft="5dp"
+        android:background="#fffefe"
+        android:cursorVisible="false"
+        android:maxEms="1" />
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#eee"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="7.5"
+        android:background="#fffefe">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/infor_detail_create_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:background="#fffefe"
+                android:gravity="left|top"
+                android:hint="评论内容"
+                android:inputType="textMultiLine"
+                android:lines="5" />
+
+
+                <LinearLayout
+                    android:id="@+id/infor_detail_create_linear"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical">
+
+                    <android.support.v4.widget.NestedScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scrollbars="none">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+                        <widget.MyGridView
+                            android:id="@+id/infor_detail_create_gridview"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:horizontalSpacing="10dp"
+                            android:numColumns="3"
+                            android:verticalSpacing="5dp" />
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/create_recycler"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+                    </LinearLayout>
+                    </android.support.v4.widget.NestedScrollView>
+                </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#eee"/>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1.5">
+    <LinearLayout
+        android:id="@+id/create_bottom_linear"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="5"
+        android:visibility="visible">
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+            <ImageView
+                android:id="@+id/infor_detail_create_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/ic_launcher"
+                android:onClick="createImg"
+                android:layout_centerInParent="true"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+            <ImageView
+                android:id="@+id/infor_detail_create_speech"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/ic_launcher_round"
+                android:layout_centerInParent="true"
+                android:onClick="createSpeech"/>
+        </RelativeLayout>
+    </LinearLayout>
+    <speech.AudioRecordButton
+        android:id="@+id/create_recordButton"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+       android:layout_centerInParent="true"
+        android:background="@drawable/button_recordnormal"
+        android:gravity="center"
+        android:minHeight="0dp"
+        android:padding="5dp"
+        android:text="按住 说话"
+        android:textColor="#727272"
+        android:visibility="gone"/>
+    </RelativeLayout>
+</LinearLayout>

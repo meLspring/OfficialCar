@@ -7,18 +7,11 @@
     tools:context="com.example.yysh.officialcar.SystemIntroduceActivity"
     android:orientation="vertical">
     <android.support.v7.widget.Toolbar
-        app:contentInsetStart="0dp"
         android:id="@+id/system_toobar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#eee">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:background="@mipmap/ic_launcher"
-            android:scaleType="fitXY"
-            android:onClick="system_back"
-            android:clickable="true"/>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -26,76 +19,47 @@
             android:layout_gravity="center"
             android:textSize="20sp"/>
     </android.support.v7.widget.Toolbar>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="15dp"
-        >
+
         <TextView
             android:id="@+id/system_intro_one"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1."
-            android:textSize="15sp"
+            android:text="夜深风淡，云上遮闭星；树静草停，林中现虫鸣；楼立门阔，室内灯火耀；车奔人往，路上景凌乱；望却止步，何自生背叹！无心而行，只盼落归情！"
+            android:textSize="18sp"
             android:layout_marginTop="5dp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="2."
-            android:textSize="15sp"
-            android:layout_marginTop="5dp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="3."
-            android:textSize="15sp"
-            android:layout_marginTop="5dp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="4."
-            android:textSize="15sp"
-            android:layout_marginTop="5dp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="5."
-            android:textSize="15sp"
-            android:layout_marginTop="5dp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="6."
-            android:textSize="15sp"
-            android:layout_marginTop="5dp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="7."
-            android:textSize="15sp"
-            android:layout_marginTop="5dp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="8."
-            android:textSize="15sp"
-            android:layout_marginTop="5dp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="n."
-            android:textSize="15sp"
-            android:layout_marginTop="5dp"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
         <Button
-            android:id="@+id/ok"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:onClick="okClick"
-            android:text="好的"
-            android:layout_marginTop="10dp"/>
-    </LinearLayout>
-
+            android:id="@+id/system_intoMain"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:text="进入主界面"
+            android:textSize="18sp"
+            android:onClick="intoMain"
+            android:layout_centerInParent="true"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="30dp">
+        <TextView
+            android:id="@+id/toMain_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5"
+            android:textSize="16sp"
+            android:textColor="@android:color/holo_red_light" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@android:color/holo_blue_bright"
+            android:text="s后进入主界面"
+            android:layout_marginBottom="30dp"
+            android:layout_marginLeft="3dp"/>
+        </LinearLayout>
+    </RelativeLayout>
 </LinearLayout>
