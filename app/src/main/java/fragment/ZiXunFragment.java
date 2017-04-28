@@ -160,7 +160,7 @@ public class ZiXunFragment extends Fragment {
     private void initData() {
         mList=new ArrayList<>();
         beanList=new ArrayList<>();
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 8; i++) {
             mList.add(R.mipmap.ic_launcher);
             ZiXunBean bean=new ZiXunBean();
             bean.setTitle("莫虚言");

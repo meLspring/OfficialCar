@@ -2,46 +2,45 @@ package adapter;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.view.animation.Transformation;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.module.GlideModule;
 import com.example.yysh.officialcar.PhotoViewActivity;
 import com.example.yysh.officialcar.R;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import cn.finalteam.galleryfinal.model.PhotoInfo;
-import uri.Uri;
 
-import static android.view.FrameMetrics.ANIMATION_DURATION;
 
 /**
- * Created by Lspring on 2017/4/17.
+ * Created by Lspring on 2017/4/27.
  */
 
-public class GalleryFinalPhotoBackAdapter extends BaseAdapter{
+public class GalleryFinalRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     private List<PhotoInfo> mPhtoList;
     private Activity context;
     private ArrayList<String> photoList;
     private boolean isShow;
+    private GridViewHolder gridHolder;
 
-    public GalleryFinalPhotoBackAdapter(List<PhotoInfo> mPhtoList, Activity context) {
+
+    public GalleryFinalRecyclerAdapter(List<PhotoInfo> mPhtoList, Activity context) {
         this.mPhtoList = mPhtoList;
         this.context = context;
     }
+
     public void addList(List<PhotoInfo> mList){
         photoList=new ArrayList<>();        //将图片选择器选择的图片地址保存到集合里，传到浏览大图页面
         mPhtoList.addAll(mList);
@@ -54,11 +53,13 @@ public class GalleryFinalPhotoBackAdapter extends BaseAdapter{
 
     public void setIsShow(boolean isShow1){
         isShow=isShow1;
+        //gridViewHolder.delete.setVisibility(View.GONE);
         notifyDataSetChanged();
     }
     public boolean isShow(){
         return isShow;
     }
+
     //提供一个方法，获取当前adapter的集合
     public List<PhotoInfo> getList(){
         return  mPhtoList;
@@ -71,63 +72,50 @@ public class GalleryFinalPhotoBackAdapter extends BaseAdapter{
     //接口回调
     public interface ImgDelAllInterface{
         void deleteAll();
-        void removeItem(View view);
-    }
-
-
-    @Override
-    public int getCount() {
-        return mPhtoList!=null?mPhtoList.size():0;
     }
 
     @Override
-    public PhotoInfo getItem(int position) {
-        return mPhtoList.get(position);
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view= LayoutInflater.from(context).inflate(R.layout.galleryfinal_photo_item,null,false);
+         gridHolder=new GridViewHolder(view);
+        return gridHolder;
     }
 
     @Override
-    public long getItemId(int position) {
-        return position;
-    }
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
 
-    @Override
-    public View getView(final int position, View convertView, final ViewGroup parent) {
-        GridViewHolder holder=null;
-        if(convertView==null){
-            convertView= LayoutInflater.from(context).inflate(R.layout.galleryfinal_photo_item,null);
-            holder=new GridViewHolder(convertView);
-            convertView.setTag(holder);
-        }else{
-            holder= (GridViewHolder) convertView.getTag();
-        }
+        final GridViewHolder gridViewHolder= (GridViewHolder) holder;
         PhotoInfo info=mPhtoList.get(position);
         final String photoPath = info.getPhotoPath();
-        //Log.e("photoPath",photoPath);
-        Glide.with(context).load(photoPath).into(holder.ig);
+        //gridViewHolder.ig.setTag(photoPath);
+        Glide.with(context).load(photoPath)
+                .thumbnail(0.2f).skipMemoryCache(false).into(gridViewHolder.ig);
+        //gridViewHolder.ig.setImageBitmap(BitmapFactory.decodeFile(photoPath));
         if(isShow){
-            holder.delete.setVisibility(View.VISIBLE);
-            final View finalConvertView = convertView;
-            final GridViewHolder finalHolder1 = holder;
-            final View finalConvertView1 = convertView;
-            holder.delete.setOnClickListener(new View.OnClickListener() {
+            gridViewHolder.delete.setVisibility(View.VISIBLE);
+            gridViewHolder.delete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
+                    // Log.e("删除后",mPhtoList.size()+"");
                     mPhtoList.remove(position);
                     photoList.remove(position);
-                    notifyDataSetChanged();
+                    //notifyDataSetChanged();
+                    notifyItemRemoved(position);
+
                     if(mPhtoList.size()==0){
                         callback.deleteAll();
                     }
                 }
             });
         }else{
-            holder.delete.setVisibility(View.GONE);
-            notifyDataSetChanged();
+            gridViewHolder.delete.setVisibility(View.GONE);
+           // notifyDataSetChanged();
         }
         if(photoList.size()>0) {
             final int pos=position;
             //点击图片跳转到单独查看大图的界面
-            holder.ig.setOnClickListener(new View.OnClickListener() {
+            gridViewHolder.ig.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(context, PhotoViewActivity.class);
@@ -139,9 +127,7 @@ public class GalleryFinalPhotoBackAdapter extends BaseAdapter{
                 }
             });
         }
-
-        final GridViewHolder finalHolder = holder;
-        holder.ig.setOnLongClickListener(new View.OnLongClickListener() {
+        gridViewHolder.ig.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
                 //开启震动
@@ -153,21 +139,25 @@ public class GalleryFinalPhotoBackAdapter extends BaseAdapter{
             }
         });
 
-        return convertView;
+    }
+
+    @Override
+    public int getItemCount() {
+        return mPhtoList!=null?mPhtoList.size():0;
     }
 
 
 
 
-    static class GridViewHolder{
+
+    static class GridViewHolder extends RecyclerView.ViewHolder{
         ImageView ig;
         ImageView delete;
 
-        public GridViewHolder(View view){
-            ig= ((ImageView) view.findViewById(R.id.photo_img));
-            delete= ((ImageView) view.findViewById(R.id.photo_delete));
-
+        public GridViewHolder(View itemView) {
+            super(itemView);
+            ig= ((ImageView) itemView.findViewById(R.id.photo_img));
+            delete= ((ImageView) itemView.findViewById(R.id.photo_delete));
         }
     }
-
 }

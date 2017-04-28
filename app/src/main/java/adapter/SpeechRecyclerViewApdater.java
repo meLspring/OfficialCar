@@ -52,7 +52,8 @@ public class SpeechRecyclerViewApdater extends RecyclerView.Adapter<RecyclerView
     //添加一个方法，用来更新item
     public void addSpeech(SpeechBean speechBean){
         recyclerList.add(speechBean);
-        notifyDataSetChanged();
+        notifyItemInserted(recyclerList.size()+1);
+      //  notifyDataSetChanged();
     }
 
     private DeleteInterface callback;
@@ -125,7 +126,7 @@ public class SpeechRecyclerViewApdater extends RecyclerView.Adapter<RecyclerView
                     public void onClick(DialogInterface dialog, int which) {
                         //将当前集合的这个角标元素参数，再去刷新
                         recyclerList.remove(holder.getAdapterPosition());
-                        notifyDataSetChanged();
+                        notifyItemRemoved(holder.getAdapterPosition());
                         dialog.dismiss();
                         dialog.cancel();
                         //判断当前集合是否为0

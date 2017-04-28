@@ -28,15 +28,18 @@
             android:layout_height="0dp"
             android:layout_gravity="center"
             android:layout_weight="1">
-
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp">
             <EditText
                 android:id="@+id/phoneNumber"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="40dp"
                 android:layout_centerVertical="true"
                 android:layout_weight="1"
                 android:hint="请输入11位手机号"
                 android:inputType="number"/>
+            </android.support.design.widget.TextInputLayout>
         </RelativeLayout>
 
         <RelativeLayout
@@ -44,7 +47,9 @@
             android:layout_height="0dp"
             android:layout_gravity="center"
             android:layout_weight="1">
-
+<android.support.design.widget.TextInputLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
             <EditText
                 android:id="@+id/code"
                 android:layout_width="171dp"
@@ -52,7 +57,7 @@
                 android:layout_centerVertical="true"
                 android:hint="验证码"
                 android:inputType="number"/>
-
+</android.support.design.widget.TextInputLayout>
             <Button
                 android:id="@+id/getCode"
                 android:layout_width="92dp"

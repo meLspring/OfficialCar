@@ -24,6 +24,13 @@ public class RecordListViewAdapter extends BaseAdapter {
         this.recordBeen=recordBeen;
         this.context=context;
     }
+
+    //将集合清空
+    public void clearList(){
+        recordBeen.clear();
+        notifyDataSetChanged();
+    }
+
     @Override
     public int getCount() {
         return recordBeen!=null?recordBeen.size():0;

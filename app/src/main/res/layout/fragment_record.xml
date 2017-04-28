@@ -4,8 +4,8 @@
     android:layout_height="match_parent"
     tools:context="fragment.RecordFragment">
 
-    <ListView
-        android:id="@+id/record_listview"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/record_recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:divider="@null"/>
@@ -14,19 +14,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:visibility="gone">
+        android:visibility="visible">
         <TextView
             android:id="@+id/record_no_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="您还没有登录哦,"
+            android:text="您已交接班,"
             android:textSize="15sp"
             />
         <TextView
             android:id="@+id/record_toLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="点击登录"
+            android:text="扫码切换车辆"
             android:textColor="@android:color/holo_blue_bright"
             android:layout_toRightOf="@id/record_no_login"
             android:textSize="15sp" />

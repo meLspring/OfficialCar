@@ -9,7 +9,6 @@ public class CarStatusBean {
     private String question;        //具体问题
     private boolean normal;         //正常
 
-
     public String getQuestion() {
         return question;
     }

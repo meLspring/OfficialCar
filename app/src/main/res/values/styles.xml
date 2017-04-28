@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:listDivider">@drawable/divider_bg</item>
     </style>
     <style name="FullScreenDialog" parent="android:style/Theme.Dialog">
         <item name="android:windowNoTitle">true</item>
@@ -35,5 +36,7 @@
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:backgroundDimEnabled">false</item>
     </style>
+
+
 
 </resources>

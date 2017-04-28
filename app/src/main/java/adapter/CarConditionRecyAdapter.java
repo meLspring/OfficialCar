@@ -24,6 +24,12 @@ public class CarConditionRecyAdapter extends RecyclerView.Adapter<RecyclerView.V
         this.context = context;
     }
 
+    //添加一个方法，将集合清空
+    public void clearList(){
+        stringList.clear();
+        notifyDataSetChanged();
+    }
+
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View holderView= LayoutInflater.from(context).inflate(R.layout.condition_recy_item,parent,false);

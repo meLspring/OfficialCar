@@ -27,39 +27,63 @@
             android:text="夜深风淡，云上遮闭星；树静草停，林中现虫鸣；楼立门阔，室内灯火耀；车奔人往，路上景凌乱；望却止步，何自生背叹！无心而行，只盼落归情！"
             android:textSize="18sp"
             android:layout_marginTop="5dp"/>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <Button
             android:id="@+id/system_intoMain"
             android:layout_width="140dp"
             android:layout_height="wrap_content"
-            android:text="进入主界面"
-            android:textSize="18sp"
+            android:layout_centerInParent="true"
             android:onClick="intoMain"
-            android:layout_centerInParent="true"/>
+            android:text="进入主界面"
+            android:visibility="gone"
+            android:textSize="18sp" />
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="30dp">
-        <TextView
-            android:id="@+id/toMain_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="5"
-            android:textSize="16sp"
-            android:textColor="@android:color/holo_red_light" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:textColor="@android:color/holo_blue_bright"
-            android:text="s后进入主界面"
             android:layout_marginBottom="30dp"
-            android:layout_marginLeft="3dp"/>
+            android:orientation="vertical">
+<LinearLayout
+    android:id="@+id/system_linear"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+            <TextView
+                android:id="@+id/toMain_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5"
+                android:textColor="@android:color/holo_red_light"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
+                android:layout_marginLeft="3dp"
+                android:text="s后进入主界面"
+                android:textColor="@android:color/holo_blue_bright"
+                android:textSize="16sp" />
+        </LinearLayout>
+            <TextView
+                android:id="@+id/system_look"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_below="@id/system_linear"
+                android:text="我想再看看"
+                android:textColor="@android:color/holo_red_light"
+                android:textSize="16sp"
+                android:layout_marginBottom="20dp"
+                android:clickable="true"
+                android:onClick="look"
+                android:layout_gravity="center_horizontal"/>
         </LinearLayout>
     </RelativeLayout>
 </LinearLayout>

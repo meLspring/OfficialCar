@@ -3,10 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     tools:context="com.example.yysh.officialcar.CarStatusActivity">
-
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -37,6 +36,7 @@
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <widget.VpSwipeRefreshLayout
         android:id="@+id/car_status_swipe"
         android:layout_width="match_parent"
@@ -46,24 +46,25 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
     </widget.VpSwipeRefreshLayout>
+
     <RelativeLayout
         android:id="@+id/status_toLogin_rela"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:visibility="visible">
+        android:visibility="gone">
         <TextView
             android:id="@+id/status_no_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="您还没有登录哦,"
+            android:text="您已交班,"
             android:textSize="15sp"
             />
         <TextView
             android:id="@+id/status_toLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="点击登录"
+            android:text="扫码切换车辆"
             android:textColor="@android:color/holo_blue_bright"
             android:layout_toRightOf="@id/status_no_login"
             android:textSize="15sp" />

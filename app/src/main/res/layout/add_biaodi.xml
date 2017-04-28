@@ -4,6 +4,7 @@
     android:layout_height="wrap_content"
     android:gravity="center"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <com.zhy.android.percent.support.PercentLinearLayout
         android:layout_width="0dp"
         android:layout_height="0dp"

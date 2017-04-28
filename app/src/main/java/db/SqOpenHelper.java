@@ -17,8 +17,9 @@ public class SqOpenHelper extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        //qrcode是判断当前是否扫描二维码，以及交接班后扫描变为没有扫描，1代表扫描，0代表没有扫描
         db.execSQL("create table if not exists myUser(_id integer primary key autoincrement," +
-                "userId,token)");
+                "userId,token,qrcode integer)");
 
     }
 

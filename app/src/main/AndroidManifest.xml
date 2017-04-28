@@ -21,16 +21,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <meta-data
+            android:name="widget.GlideConfig"
+            android:value="GlideModule"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:launchMode="singleTask">
+            android:configChanges="orientation|keyboardHidden|screenSize">
 
         </activity>
         <activity
             android:name=".LoginActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:launchMode="singleTask" >
+            android:configChanges="orientation|keyboardHidden|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -41,14 +43,18 @@
             android:name=".QRCodeActivity"
             android:configChanges="orientation|keyboardHidden|screenSize" />
         <activity android:name=".SystemIntroduceActivity" />
-        <activity android:name=".NewsCenterActivity" />
+        <activity android:name=".NewsCenterActivity"
+            android:excludeFromRecents="true"
+            android:taskAffinity=""  />
         <activity
             android:name=".InforPlatformCreateActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan" >
+        </activity>
         <activity
             android:name=".InforPlatformDetailActivity"
-            android:windowSoftInputMode="adjustResize" />
+            android:windowSoftInputMode="adjustResize"
+            android:configChanges="orientation|keyboardHidden|screenSize"/>
         <activity
             android:name=".DynamicFormActivity"
             android:windowSoftInputMode="adjustResize" />

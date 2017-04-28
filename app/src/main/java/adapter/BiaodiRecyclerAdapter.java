@@ -46,6 +46,12 @@ public class BiaodiRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         biaodiBeanArrayList.add(bean);
         notifyDataSetChanged();
     }
+
+    public void clearList(){
+        biaodiBeanArrayList.clear();
+        notifyDataSetChanged();
+    }
+
     @Override
     public int getItemViewType(int position) {
         if(position==0 && headerView){      //说明有头布局
@@ -98,7 +104,6 @@ public class BiaodiRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         }else{                                  //只有item布局
              totalList=biaodiBeanArrayList.size();
         }
-        Log.e("totalList",totalList+"");
         return totalList;
     }
 

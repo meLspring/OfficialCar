@@ -90,13 +90,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical">
-                        <widget.MyGridView
-                            android:id="@+id/infor_detail_create_gridview"
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/detail_create_grid_recycler"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:horizontalSpacing="10dp"
-                            android:numColumns="3"
-                            android:verticalSpacing="5dp" />
+                            android:layout_height="wrap_content"/>
                         <android.support.v7.widget.RecyclerView
                             android:id="@+id/create_recycler"
                             android:layout_width="match_parent"
@@ -129,10 +126,11 @@
             android:layout_weight="1">
             <ImageView
                 android:id="@+id/infor_detail_create_img"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@mipmap/ic_launcher"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@mipmap/pick_from_gallery"
                 android:onClick="createImg"
+                android:scaleType="fitXY"
                 android:layout_centerInParent="true"/>
         </RelativeLayout>
         <RelativeLayout

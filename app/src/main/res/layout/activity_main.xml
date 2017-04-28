@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context="com.example.yysh.officialcar.MainActivity">
     <android.support.v7.widget.Toolbar
         app:contentInsetStart="0dp"
@@ -44,7 +43,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_below="@id/mainToobar">
 
         <FrameLayout
             android:id="@+id/container"
@@ -52,11 +52,10 @@
             android:layout_height="0dp"
             android:layout_weight="9" />
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:orientation="horizontal"
             android:background="#eee">
 
             <RadioGroup
@@ -64,7 +63,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
-                android:weightSum="5">
+                android:weightSum="5"
+                android:clipChildren="false">
 
                 <RadioButton
                     android:id="@+id/main_carCondition"
@@ -90,14 +90,12 @@
                     android:text="记录"
                     android:textSize="10sp" />
 
-                <RadioButton
-                    android:id="@+id/main_add"
+                <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:layout_weight="1"
-                    android:button="@null"
-                    android:drawableTop="@mipmap/ic_launcher" />
+                    />
 
                 <RadioButton
                     android:id="@+id/main_zixun"
@@ -123,8 +121,14 @@
                     android:text="我的"
                     android:textSize="10sp" />
             </RadioGroup>
-
-        </LinearLayout>
-
+        </RelativeLayout>
     </LinearLayout>
-</LinearLayout>
+    <ImageButton
+        android:id="@+id/main_add"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_centerHorizontal="true"
+        android:background="@mipmap/add_img"
+        android:layout_marginBottom="20dp"
+        android:layout_alignParentBottom="true"/>
+</RelativeLayout>

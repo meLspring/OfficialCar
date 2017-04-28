@@ -26,7 +26,7 @@
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
+        android:textSize="15sp"
         android:text="100"
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="20dp"/>
@@ -37,9 +37,9 @@
         <TextView
             android:id="@+id/biaodi_number"
             android:text="京 NB110"
-            android:textSize="20sp"
+            android:textSize="15sp"
             android:layout_marginLeft="20dp"
-            android:layout_centerVertical="true"
+            android:layout_centerInParent="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </RelativeLayout>

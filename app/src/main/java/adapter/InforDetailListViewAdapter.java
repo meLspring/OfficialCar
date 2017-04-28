@@ -10,6 +10,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -34,6 +35,7 @@ public class InforDetailListViewAdapter extends RecyclerView.Adapter<RecyclerVie
     private LayoutInflater inflater;
     private List<Bitmap> bitmapList;    //添加图片到gridview的集合
     private AddImgVideoAdapter addImgVideoAdapter;
+
     public InforDetailListViewAdapter(List<InforDetailBean> beanList,Context context){
         this.beanList=beanList;
         this.context=context;
@@ -63,11 +65,19 @@ public class InforDetailListViewAdapter extends RecyclerView.Adapter<RecyclerVie
             viewHolder.iconLinaer.setVisibility(View.VISIBLE);
             viewHolder.detail_gridview.setVisibility(View.VISIBLE);
             for (int i=0;i<5;i++) {
-                Bitmap bitmap=BitmapFactory.decodeResource(context.getResources(),R.mipmap.ic_launcher_round);
+                Bitmap bitmap=BitmapFactory.decodeResource(context.getResources(),R.mipmap.ic_launcher);
                 bitmapList.add(bitmap);
             }
             viewHolder.detail_gridview.setAdapter(addImgVideoAdapter);
             addImgVideoAdapter.notifyDataSetChanged();
+            //点击图片，跳转到浏览大图页面
+            viewHolder.detail_gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                }
+            });
+
         }else{
             viewHolder.iconLinaer.setVisibility(View.GONE);
            // addImgVideoAdapter.notifyDataSetChanged();

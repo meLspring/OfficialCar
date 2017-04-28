@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -14,6 +15,10 @@ import android.widget.Toast;
 
 import com.example.yysh.officialcar.R;
 
+import org.w3c.dom.Text;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import bean.CarStatusBean;
@@ -32,7 +37,8 @@ public class CarStatusAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     private int totalList;      //用来记录添加头尾布局后的总数
     private boolean headerViewShow,footerViewShow;
     private boolean isChange;       //判断当前问题状况是否可以修改
-    private View headerView,footerView,itemView;
+    private View headerView,footerView,itemView,changeTimeItem;
+    private FooterViewHolder footerViewHolder;
 
     public CarStatusAdapter(List<CarStatusBean> mList, Context context) {
         this.mList = mList;
@@ -51,8 +57,12 @@ public class CarStatusAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     //添加一个方法，当activity页面点击修改后，让足视图可见，并且radiobutton可以点击
     public void changeQuestion(boolean change){
         this.isChange=change;
-        notifyDataSetChanged();
+        if(isChange && footerView!=null) {
+            footerViewHolder.footer_linear.setVisibility(View.VISIBLE);
+        }
     }
+
+
     @Override
     public int getItemViewType(int position) {
         if(position==0 && headerViewShow){      //说明有头布局
@@ -72,45 +82,56 @@ public class CarStatusAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             return headerViewHolder;
         }else if(viewType==ITEM_TYPE_FOOTER){
              footerView=inflater.inflate(R.layout.car_status_footerview,parent,false);
-            FooterViewHolder footerViewHolder=new FooterViewHolder(footerView);
+            footerViewHolder=new FooterViewHolder(footerView);
             return footerViewHolder;
-        }else{
-             itemView=inflater.inflate(R.layout.car_status_item_view,parent,false);
+        }
+        else{
+            itemView=inflater.inflate(R.layout.car_status_item_view,parent,false);
             ItemViewHolder itemViewHolder=new ItemViewHolder(itemView);
             return itemViewHolder;
         }
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        if(!isChange && footerView!=null){
-            Log.e("gone","gone");
-            footerView.setVisibility(View.GONE);
-        }else if(isChange && footerView!=null){
-            Log.e("VISIBLE","VISIBLE");
-            footerView.setVisibility(View.VISIBLE);
-        }
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
+//        if(!isChange && footerView!=null){
+//            Log.e("gone","gone");
+//            footerViewHolder.footer_linear.setVisibility(View.INVISIBLE);
+//           // footerView.setVisibility(View.GONE);
+//        }else if(isChange && footerView!=null){
+//            Log.e("VISIBLE","VISIBLE");
+//            footerViewHolder.footer_linear.setVisibility(View.VISIBLE);
+//            //footerView.setVisibility(View.VISIBLE);
+//        }
 
+        if(holder instanceof FooterViewHolder){
 
-            if(holder instanceof FooterViewHolder){
-                if(!isChange){
-                    return;
-                }
-                FooterViewHolder footerViewHolder= (FooterViewHolder) holder;
-                footerViewHolder.sure.setOnClickListener(new View.OnClickListener() {
+            final FooterViewHolder footerHolder= (FooterViewHolder) holder;
+            Date date=new Date();
+            SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String time=format.format(date);
+            footerHolder.lastTime.setText(time);
+
+                footerHolder.sure.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         isChange=false;
+
+                        Date date=new Date();
+                        SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                        String time=format.format(date);
+                        footerHolder.lastTime.setText(time);
+                        footerHolder.footer_linear.setVisibility(View.INVISIBLE);
                         notifyDataSetChanged();
                         Toast.makeText(context, "保存", Toast.LENGTH_SHORT).show();
 
                     }
                 });
-                footerViewHolder.cancel.setOnClickListener(new View.OnClickListener() {
+                footerHolder.cancel.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        isChange=false;
-                        notifyDataSetChanged();
+                       // isChange=false;
+                        footerHolder.footer_linear.setVisibility(View.INVISIBLE);
                         Toast.makeText(context, "取消", Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -127,14 +148,38 @@ public class CarStatusAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                     itemHolder.rb_normal.setChecked(false);
                     itemHolder.rb_abnormal.setChecked(true);
                 }
-                if(isChange){
+                if(isChange){       //可以点击
                     itemHolder.rb_normal.setClickable(true);
                     itemHolder.rb_abnormal.setClickable(true);
+                    itemHolder.rb_normal.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            CarStatusBean normalBean = mList.get(position - 1);
+                            String question=normalBean.getQuestion();
+                            normalBean.setNormal(true);
+                            normalBean.setQuestion(question);
+                            mList.remove(position-1);
+                            mList.add(position-1,normalBean);
+                        }
+                    });
+                    itemHolder.rb_abnormal.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            CarStatusBean normalBean = mList.get(position - 1);
+                            String question=normalBean.getQuestion();
+                            normalBean.setNormal(false);
+                            normalBean.setQuestion(question);
+                            mList.remove(position-1);
+                            mList.add(position-1,normalBean);
+                        }
+                    });
                 }else{
                     itemHolder.rb_normal.setClickable(false);
                     itemHolder.rb_abnormal.setClickable(false);
                 }
             }
+
+
     }
 
     @Override
@@ -181,11 +226,17 @@ public class CarStatusAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     static class FooterViewHolder extends RecyclerView.ViewHolder{
         Button sure;
         Button cancel;
+        LinearLayout footer_linear;
+        TextView lastTime;
         public FooterViewHolder(View itemView) {
             super(itemView);
             sure= ((Button) itemView.findViewById(R.id.car_status_footer_sure));
             cancel= ((Button) itemView.findViewById(R.id.car_status_footer_cancel));
+            footer_linear= (LinearLayout) itemView.findViewById(R.id.car_status_footer_linear);
+            lastTime= (TextView) itemView.findViewById(R.id.lastTime);
         }
     }
+
+
 
 }
