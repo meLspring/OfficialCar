@@ -57,8 +57,8 @@ public class DialogManager {
 			mVoice.setVisibility(View.VISIBLE);
 			mLable.setVisibility(View.VISIBLE);
 
-			mIcon.setImageResource(R.mipmap.recorder);
-			mLable.setText("手指上滑");
+			//mIcon.setImageResource(R.mipmap.recorder);
+			mLable.setText("手指上滑取消");
 		}
 	}
 
@@ -115,7 +115,7 @@ public class DialogManager {
 
 			//通过level来找到图片的id，也可以用switch来寻址，但是代码可能会比较长
 			int resId = mContext.getResources().getIdentifier("v" + level,
-					"drawable", mContext.getPackageName());
+					"mipmap", mContext.getPackageName());
 			
 			mVoice.setImageResource(resId);
 		}

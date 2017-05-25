@@ -39,6 +39,7 @@ public class CarStatusAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     private boolean isChange;       //判断当前问题状况是否可以修改
     private View headerView,footerView,itemView,changeTimeItem;
     private FooterViewHolder footerViewHolder;
+    private boolean isCancle;           //点击取消，状态不保存，回到原来状态
 
     public CarStatusAdapter(List<CarStatusBean> mList, Context context) {
         this.mList = mList;
@@ -60,6 +61,7 @@ public class CarStatusAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         if(isChange && footerView!=null) {
             footerViewHolder.footer_linear.setVisibility(View.VISIBLE);
         }
+        notifyDataSetChanged();
     }
 
 
@@ -107,16 +109,19 @@ public class CarStatusAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         if(holder instanceof FooterViewHolder){
 
             final FooterViewHolder footerHolder= (FooterViewHolder) holder;
-            Date date=new Date();
-            SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            String time=format.format(date);
-            footerHolder.lastTime.setText(time);
+            //开始时足视图的时间是从服务器获取的
+//            Date date=new Date();
+//            SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//            String time=format.format(date);
+//              footerHolder.lastTime.setText("服务器时间");
 
                 footerHolder.sure.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        isChange=false;
+                        //保存的时候先把数据提交到服务器，然后再从服务器重新获取数据，刷新界面
 
+                        isChange=false;
+                        isCancle=false;
                         Date date=new Date();
                         SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                         String time=format.format(date);
@@ -130,8 +135,11 @@ public class CarStatusAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 footerHolder.cancel.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                       // isChange=false;
+                        //取消的时候不更改状态，将之前的状态显示
+                        isChange=false;
+                        isCancle=true;
                         footerHolder.footer_linear.setVisibility(View.INVISIBLE);
+                        notifyDataSetChanged();
                         Toast.makeText(context, "取消", Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -154,23 +162,28 @@ public class CarStatusAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                     itemHolder.rb_normal.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            CarStatusBean normalBean = mList.get(position - 1);
-                            String question=normalBean.getQuestion();
-                            normalBean.setNormal(true);
-                            normalBean.setQuestion(question);
-                            mList.remove(position-1);
-                            mList.add(position-1,normalBean);
+                            if (!isCancle) {
+                                CarStatusBean normalBean = mList.get(position - 1);
+                                String question = normalBean.getQuestion();
+                                normalBean.setNormal(true);
+                                normalBean.setQuestion(question);
+                                mList.remove(position - 1);
+                                mList.add(position - 1, normalBean);
+
+                            }
                         }
                     });
                     itemHolder.rb_abnormal.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            CarStatusBean normalBean = mList.get(position - 1);
-                            String question=normalBean.getQuestion();
-                            normalBean.setNormal(false);
-                            normalBean.setQuestion(question);
-                            mList.remove(position-1);
-                            mList.add(position-1,normalBean);
+                            if (!isCancle) {
+                                CarStatusBean normalBean = mList.get(position - 1);
+                                String question = normalBean.getQuestion();
+                                normalBean.setNormal(false);
+                                normalBean.setQuestion(question);
+                                mList.remove(position - 1);
+                                mList.add(position - 1, normalBean);
+                            }
                         }
                     });
                 }else{
@@ -181,6 +194,7 @@ public class CarStatusAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
 
     }
+
 
     @Override
     public int getItemCount() {

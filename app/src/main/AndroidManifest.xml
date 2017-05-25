@@ -27,6 +27,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
+            android:launchMode="singleTask"
             android:configChanges="orientation|keyboardHidden|screenSize">
 
         </activity>
@@ -50,6 +51,7 @@
             android:name=".InforPlatformCreateActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:windowSoftInputMode="adjustPan" >
+
         </activity>
         <activity
             android:name=".InforPlatformDetailActivity"
@@ -57,7 +59,8 @@
             android:configChanges="orientation|keyboardHidden|screenSize"/>
         <activity
             android:name=".DynamicFormActivity"
-            android:windowSoftInputMode="adjustResize" />
+            android:windowSoftInputMode="adjustResize" >
+        </activity>
         <activity android:name=".ZiXunDetailActivity" />
         <activity android:name=".PhoneActivity" />
         <activity android:name=".InforPlatformActivity" />

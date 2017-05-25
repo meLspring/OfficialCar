@@ -3,6 +3,8 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.zhy.android.percent.support.PercentLinearLayout
@@ -18,7 +20,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:text="请输入本次的表底(一天只能输入一次)"
-            android:textSize="18sp"
+            android:textSize="15sp"
             android:gravity="center_vertical"/>
         <TextView
             android:layout_width="match_parent"
@@ -45,13 +47,13 @@
             <Button
                 android:id="@+id/biaodi_popup_negative"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="取消" />
             <Button
                 android:id="@+id/biaodi_popup_positive"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="确定"
                 android:layout_marginLeft="5dp" />
